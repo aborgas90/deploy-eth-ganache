@@ -13,8 +13,8 @@ Make sure you have the following installed:
 
 ### 1️⃣ Clone the Repository
 ```sh
-git clone <your-repository-url>
-cd <your-project-folder>
+git clone https://github.com/aborgas90/deploy-eth-ganache.git
+cd deploy-eth-ganache
 ```
 
 ### 2️⃣ Install Dependencies

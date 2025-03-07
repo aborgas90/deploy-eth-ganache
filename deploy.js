@@ -1,7 +1,7 @@
 const { ethers } = require("ethers");
 const fs = require("fs-extra");
-const dotenv = require('dotenv')
-dotenv.config()
+const dotenv = require("dotenv");
+dotenv.config();
 
 async function main() {
   // 🔹 Connect to Ganache running on Windows (Ensure it's reachable from WSL)
@@ -12,6 +12,17 @@ async function main() {
     process.env.PRIVATE_KEY,
     provider
   );
+
+  //if u want secure ur app u can add a encrypt on env
+  // const walletEncrypted = fs.readFileSync("encryptedKey.json", "utf-8");
+  // let wallet = ethers.Wallet.fromEncryptedJsonSync(
+  //   walletEncrypted,
+  //   process.env.PRIVATE_KEY_PASSWORD
+  // );
+  // wallet =  wallet.connect(provider);
+
+  //if u want to run 
+  //command => PRIVATE_KEY_PASSWORD=<your_password> node deploy.js
 
   // 🔹 Load contract ABI and Bytecode
   const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf8");
@@ -29,12 +40,12 @@ async function main() {
   // console.log("🗞️ Transaction Receipt:", contract.deploymentTransaction());
   // console.log("📜 Transaction Hash:", deployReceipt.transactionHash);
   const currentFavoriteNumber = await contract.retrieve();
-  console.log(`"Retrieve : ${currentFavoriteNumber.toString()}`)
+  console.log(`"Retrieve : ${currentFavoriteNumber.toString()}`);
 
-  const transactionResponse = await contract.store("7") 
-  const transactionReceipt = await transactionResponse.wait(1)
-  const updateFavoriteNumber = await contract.retrieve()
-  console.log(updateFavoriteNumber.toString()) //to make sure reeadable 
+  const transactionResponse = await contract.store("7");
+  const transactionReceipt = await transactionResponse.wait(1);
+  const updateFavoriteNumber = await contract.retrieve();
+  console.log(updateFavoriteNumber.toString()); //to make sure reeadable
 }
 
 main()

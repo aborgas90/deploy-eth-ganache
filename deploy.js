@@ -23,7 +23,7 @@ async function main() {
   const contract = await contractFactory.deploy();
   const deployReceipt = await contract.deploymentTransaction().wait(1);
 
-  //sepolia chain id : 11155111
+  //sepolia chain id : ******
   console.log("✅ Contract Deployed!");
   // console.log("📍 Address:", contract.target);
   // console.log("🗞️ Transaction Receipt:", contract.deploymentTransaction());
